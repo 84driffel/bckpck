@@ -17,3 +17,14 @@ def node(selection):
         return list[int(selection)]
     else:
         return -1
+
+def run():
+    app.run(host='192.168.1.5',port=443,ssl_context=('./certs/new_cert.crt', './certs/private.key'),debug=True)
+    #app.run(host='0.0.0.0',port=8000)
+
+def main():
+    print('----flask test main----')
+    run()
+
+if __name__ == '__main__':
+    main()
