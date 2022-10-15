@@ -22,7 +22,7 @@
         {
             "matches":["https://www.youtube.com/*"],
             "js":["content.js"],
-            "css":["content.css"],
+            "css":["./css/content.css"],
             "run_at": "document_idle"
         }
     ],
