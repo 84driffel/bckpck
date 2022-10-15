@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="./jquery.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,19 @@
     <h1>Options</h1>
     <h2>Resolution Server</h2>
     <div class = "checkboxes">
-        <div><input type="checkbox" id="WR" checked>Use Default</div>
-        <h3>Use Custom Resolution Server</h3>
-        <div>Server IP <input type="text" id="IP"></div>
+        <div><input type="checkbox" id="defaultCheckbox" checked>Use Default</div>
+        <div id="SetServerIP">
+            <h3>Use Custom Resolution Server</h3>
+            <div>Server IP <input type="text" id="IP"></div>
+        </div>
     </div>
     <h2>Chat Filtering</h2>
-    <div><input type="checkbox" id="chat-filter" checked>Enable Chat Filtering</div>
-    <input type="button" value="Set Settings" id="setSettings">
+    <div>
+        <input type="checkbox" id="chat-filter" checked>Enable Chat Filtering
+    </div>
+    <div class="SaveSettings">
+        <input type="button" value="Save Settings" id="setSettings">
+    </div>
     <script src="./options.js"></script>
 </body>
 </html>
