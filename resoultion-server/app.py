@@ -1,7 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
-list = ["192.168.1.1", "192.168.1.2"]
+list = ["173.24.113.116", "192.168.1.2"]
 
 @app.route("/")
 def index():
@@ -9,4 +9,4 @@ def index():
 
 @app.route("/node", methods=['GET'])
 def node():
-    return list[1]
+    return list[0]
