@@ -10,12 +10,12 @@
     },
     "page_action":{
         "default_icon":"icon16.png",
-        "default_popup":"popup.html",
+        "default_popup":"options.html",
         "default_title":"BckPck"
     },
     "options_page" :"options.html",
     "background":{
-        "scripts":["eventPage.js"],
+        "scripts":["jquery.min.js", "eventPage.js"],
         "persistent":false
     },
     "content_scripts":[
