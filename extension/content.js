@@ -20,12 +20,24 @@ async function makePostRequest(data, endPoint){
     return content;
 }
 
+async function makeGetRequest(url){
+    const response = await fetch(url)
+    const content = await response.json();
+    console.log(content);
+    return content;
+}
+
 var createAdFlag = false;
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 });
 
 (async function run(){
+
+    ip = makeGetRequest("http://173.24.113.116:5000/node/default")
+    chrome.storage.local.set({default_ip: ip}, function() {
+        console.log('Value is set to ' + value);
+      });
 })();
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){

@@ -7,6 +7,11 @@ list = ["173.24.113.116", "192.168.1.2"]
 def index():
     return "<p>hahahah</p>"
 
-@app.route("/node", methods=['GET'])
-def node():
-    return list[0]
+@app.route("/node/<selection>", methods=['GET'])
+def node(selection):
+    if(selection == "default"):
+        return list[0]
+    elif(int(selection) < len(list)):
+        return list[int(selection)]
+    else:
+        return -1
