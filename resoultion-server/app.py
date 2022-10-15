@@ -1,6 +1,8 @@
 from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 list = ["173.24.113.116", "192.168.1.2"]
 
 @app.route("/")
