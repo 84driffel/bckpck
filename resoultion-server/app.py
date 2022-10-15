@@ -1,7 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
-list = ["192.168.1.1", "192.168.1.1"]
+list = ["192.168.1.1", "192.168.1.2"]
 
 @app.route("/")
 def index():
