@@ -33,8 +33,11 @@ def post_comments():
     print(json)
     db.insert_user_new(json["url"],json["user_id"],json["content"])
     comments = db.get_comments(json["url"])
-    net_hand.sync()
     net_hand.post(comments[-1])
+    db.clear_table()
+    net_hand.sync()
+    db.insert_users_old(net_hand.posts)
+    #comments = db.get_comments(json["url"])
     print(comments)
 
     Response = jsonify(200)
