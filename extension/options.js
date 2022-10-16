@@ -2,9 +2,14 @@ var user_ip;
 var user_default_status;
 var user_chat_status;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+//TODO: This shit busted, fix later
 async function readSettings() {
     await chrome.storage.local.get(["default_ip"], function(result) {
-        user_ip = (result.default_ip.ip[0])
+        user_ip = (result.temp_ip)
       });
 
     await chrome.storage.local.get(["use_default_ip"], function(result) {
@@ -14,10 +19,14 @@ async function readSettings() {
     await chrome.storage.local.get(["chat_filter"], function(result) {
         user_chat_status = (result.chat_status)
       });
+      if (user_ip == undefined){
+        user_ip = "bckpck.xyz"
+      } 
     }
 
 readSettings();
-console.log(user_ip + " " + user_default_status + " " + user_chat_status)
+sleep(2000);
+console.log(user_ip + " " + user_default_status + " " + user_chat_status);
 $('#SetServerIP').hide();
 $('#default-ip').text(user_ip);
 
