@@ -1,0 +1,18 @@
+{
+  "derivedSeedHex": "5ae435a13303be7fbc3340c6a96660670c25444318281fdbde646a3c07d3c021",
+  "derivedPublicKeyBase58Check": "BC1YLjSSFbjfHACjeFqNjhSER4sjMMZNYgnPZEuwceYHXMbG4xTf6vF",
+  "publicKeyBase58Check": "BC1YLgGZWXVCnv6Y2Hir646YBuHC8N8UqvBG4xTC4kvYBCy4vaYfhVg",
+  "btcDepositAddress": "Not implemented yet",
+  "ethDepositAddress": "Not implemented yet",
+  "expirationBlock": 182113,
+  "network": "mainnet",
+  "accessSignature": "3046022100f82adb6e772dea352aa421f820ae7c84aa9d5fafd5d34ee3ae0b3d53ac8dc754022100ebe01945e0d439d6c30a1f8f86d67423d1b6d3e370c86d167e4b62774ab03e26",
+  "jwt": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjU4OTAzMjQsImV4cCI6MTY2ODQ4MjMyNH0.W86pEHqa7x11j3An_ViOYL3uvRzkYhfp2QQVH-_BNHxhLXmuEk7qOcR6HDUK2isF11Qy-pJZA5Zu-JEiW2o1NQ",
+  "derivedJwt": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXJpdmVkUHVibGljS2V5QmFzZTU4Q2hlY2siOiJCQzFZTGpTU0ZiamZIQUNqZUZxTmpoU0VSNHNqTU1aTllnblBaRXV3Y2VZSFhNYkc0eFRmNnZGIiwiaWF0IjoxNjY1ODkwMzI0LCJleHAiOjE2Njg0ODIzMjR9.jqpxNp4KWpogA6JgKS45ywC7xBt0LYsQNa41vOrDtRejVs-ti_33nVQh3rgDI2d7_i7iH00aW7z_6il4mryrSA",
+  "messagingPublicKeyBase58Check": "BC1YLgpxGMnSo93aJjmEL41MzcKVzqoFu9PhrrxwwfA6afZXTeeXdRp",
+  "messagingPrivateKey": "81f3a84093ec935dcaf643df223fdab64ff501083ee813c9a9080ed7b3da744d",
+  "messagingKeyName": "default-key",
+  "messagingKeySignature": "304502206bf9c0ccf4021f888213bd2dedc3f05aaf9f8a04cf966ee48545f624a00045a1022100e6609a49dc614dc5f83eb6b792edeff59f8b26376af624bce570644d47318486",
+  "transactionSpendingLimitHex": "8090dfc04a03023205e80716020000000000",
+  "signedUp": false
+}
