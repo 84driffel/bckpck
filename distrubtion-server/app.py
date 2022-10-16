@@ -3,7 +3,8 @@ from flask_cors import CORS
 import database
 import network
 
-
+# a better system than this would be to compare the database hash values and the hash values from the blockchain,
+# replacing where needed.
 db = database.Database()
 db.clear_table()
 net_hand = network.NetworkHandler()

@@ -14,7 +14,7 @@ class NetworkHandler:
     def sync(self):
         print('Attempting sync with network')
         self.posts = []
-        for i in self.desoPosts.getPostsForPublicKey(username="BckPck").json()['Posts']:
+        for i in self.desoPosts.getPostsForPublicKey(username="BckPck",numToFetch=1000).json()['Posts']:
             relimited = tuple(i['Body'].split('<|>')[1:-1])
             #print(relimited)
             if len(relimited) == 5:
