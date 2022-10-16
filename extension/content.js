@@ -43,9 +43,9 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 
     var ip = await makeGetRequest("https://bckpck.xyz/node/default")
     //console.log(ip)
-    chrome.storage.local.set({default_ip: ip}, function() {
-        console.log('Value is set to ' + ip);
-      });
+    //chrome.storage.local.set({default_ip: ip}, function() {
+    //    console.log('Value is set to ' + ip);
+    //  });
 
 
     //chrome.tabs.executeScript(null, {file: 'modifyDOM.js'});

@@ -1,29 +1,72 @@
-console.log("test popup");
+// (async function run(){
+//     await readSettings();
+//     //sleep(2000);
+//     //console.log(user_ip + " " + user_default_status + " " + user_chat_status);
+//     //$('#SetServerIP').hide();
+//     //$('#default-ip').text(user_ip);
+// })()
+readSettings()
 
-// need to make this flag get stored in the chrome cash :(.
-var createAdFlag = false;
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-document.getElementById("create-ad").addEventListener('click',function(){
-    chrome.tabs.query({active:true ,currentWindow:true},function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id,{todo:"create-ad-flip"});
+//TODO: This shit busted, fix later
+function readSettings() {
+    chrome.storage.sync.get('preferences', function(result){
+        console.log(result.preferences);
+        console.log(result.preferences["default_ip"]);
+        console.log(result.preferences["use_default_ip"]);
+        console.log(result.preferences["chat_status"]);
+        document.getElementById("ip").value = result.preferences["default_ip"];
+        if (result.preferences["use_default_ip"] === true){
+            $('#defaultCheckbox').prop('checked', true);
+        }
+        else{
+            $('#defaultCheckbox').prop('checked', false);
+        }
+        if (result.preferences["chat_status"] === true){
+            $('#chat-filter').prop('checked', true);
+        }
+        else{
+            $('#chat-filter').prop('checked', false);
+        }
     });
-    document.getElementById("finish-ad").style = "visibility: visible;";
-    createAdFlag = true;
+
+      //if (user_ip == undefined){
+      //  user_ip = "bckpck.xyz"
+      //} 
+}
+
+
+
+// event handler for the default ip checkbox
+// $('#defaultCheckbox').on('click', function(){
+//     if($('#defaultCheckbox').is(":checked")){
+//         $('#SetServerIP').hide();
+//         $('#default-ip').show();
+//     } else {
+//         $('#SetServerIP').show();
+//         $('#default-ip').hide();
+//     }
+//     console.log('test');
+// });
+
+// event handler for the save settings button
+$('#setSettings').on('click', function(){
+    chrome.storage.sync.get('preferences', function(result){
+        result.preferences["default_ip"] = $('#ip').val();
+        console.log("Saved ip: " + result.preferences["default_ip"]);
+
+        result.preferences["use_default_ip"] = document.getElementById('defaultCheckbox').checked;
+        console.log("Using Default IP: " + result.preferences["use_default_ip"]);
+
+        result.preferences["chat_status"] = document.getElementById('chat-filter').checked;
+        console.log("Chat filter: " + result.preferences["chat_status"]);
+        chrome.storage.sync.set({'preferences':result.preferences});
+    });
 });
 
-document.getElementById("finish-ad").addEventListener('click', function(){
-    chrome.tabs.query({active:true ,currentWindow:true},function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id,{todo:"create-ad-flip"});
-    });
-    this.style = "visibility: hidden;";
-    createAdFlag = false;
-});
-
-(function(){
-    if(createAdFlag){
-        document.getElementById("finish-ad").style = "visibility: visible;";
-    }
-    chrome.tabs.query({active:true ,currentWindow:true},function(tabs){
-        chrome.tabs.sendMessage(tabs[0].id,{todo:"test"});
-    });
-})();
+$('#domdom-hide').on('click', function(){
+    chrome.tabs.executeScript(null, {file: 'hidecomments.js'});
+})

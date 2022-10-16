@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="./jquery.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BckPck</title>
-    <style>
-        body{
-            min-width: 250px;
-            min-height:250px;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/options.css">
+    <title>Options Page</title>
 </head>
 <body>
-    <h1>BckPck</h1>
-    <script src="./popup.js"></script>
+    <h1>Options</h1>
+    <h2>Resolution Server</h2>
+    <div class = "checkboxes">
+        <div>
+            <input type="checkbox" id="defaultCheckbox" checked>Use Default <p id="default-ip"></p>
+        </div>
+        <div id="SetServerIP">
+            <h3>Use Custom Resolution Server</h3>
+            <div>Server IP <input type="text" id="ip"></div>
+        </div>
+    </div>
+    <h2>Chat Filtering</h2>
+    <div>
+        <input type="checkbox" id="chat-filter" checked>Enable Chat Filtering
+    </div>
+    <div class="SaveSettings">
+        <input type="button" value="Save Settings" id="setSettings">
+    </div>
+    <div id="test-dom">
+        <input type="button" id="domdom-hide" value="Hide Comments">
+        <input type="button" id="domdom-show" value="Show Comments">
+    </div>
+    <!-- <script src="./popup.js"></script> -->
 </body>
+<script src="./popup.js"></script>
 </html>
