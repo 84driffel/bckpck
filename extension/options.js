@@ -21,13 +21,26 @@ $('#defaultCheckbox').on('click', function(){
 // event handler for the save settings button
 $('#setSettings').on('click', function(){
     var temp_ip = '';
+    var default_status;
     if($('#defaultCheckbox').is(":checked")){
         temp_ip = stored_ip;
+        default_status = true;
     } else {
         temp_ip = $('#IP').val();
+        default_status = false;
     }
-    console.log(temp_ip);
-    console.log("Chat filter: " + $('#chat-filter').is(':checked'));
+    chrome.storage.local.set({stored_ip: temp_ip},function(){
+        console.log("Save ip: " + temp_ip)
+    });
+
+    chrome.storage.local.set({use_default_ip: default_status}, function(){
+        console.log("Using Default IP: " + default_status)
+    });
+
+    var chat_status = $('#chat-filter').is(':checked');
+    chrome.storage.local.set({chat_filter: chat_status},function(){
+        console.log("Chat filter: " + $('#chat-filter').is(':checked'));
+    });
 });
 
 $('#domdom-hide').on('click', function(){
