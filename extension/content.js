@@ -152,25 +152,25 @@ function genComments(commentListLocal){
     })
     main_div.appendChild(inputText);
     main_div.appendChild(inputBtn);
-    main_div.id = "bkcpk-comment-container";
+    main_div.id = "bckpk-comment-container";
     main_div.className = "bckpck-comment";
     for(var i = 0; i < commentListLocal.length; i++){
         let secondary = document.createElement('div')
         secondary.id = "bckpck-comment";
-        secondary.className = "bkcpck-comment"
+        secondary.className = "bckpck-comment"
         secondary.margin = "10%";
         let name = document.createElement('p');
-        name.textContent = commentListLocal[i][0];
+        name.textContent = commentListLocal[i][3];
         name.className = "bckpck-name";
         let time = document.createElement('p');
-        time.textContent = commentListLocal[i][2];
+        time.textContent = commentListLocal[i][0];
         time.className = "bckpck-time";
         let break_1 = document.createElement('br');
         let content = document.createElement('p');
-        content.textContent = commentListLocal[i][3];
+        //content.textContent = commentListLocal[i][1];
         content.className = "bckpck-time";
         let hash = document.createElement('p');
-        hash.textContent = commentListLocal[i][4];
+        //hash.textContent = commentListLocal[i][4];
         hash.style.visiblity = 'hidden';
         secondary.appendChild(name);
         secondary.appendChild(time);

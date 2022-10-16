@@ -19,10 +19,22 @@
 .tablinks { 
     background-color: #43d0e2;
     border: 2px;
+    float: left;
     cursor: pointer;
     transition: 0.3s;
     font-size: 16px;
     font-family: inherit;
+}
+
+.bckpck-comment{
+    font-size: 16px;
+    font-family: inherit;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.bckpck-time{
+    font-size: 11px;
 }
 
 .tablinks:hover{
