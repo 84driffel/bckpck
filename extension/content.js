@@ -46,6 +46,13 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     chrome.storage.local.set({default_ip: ip}, function() {
         console.log('Value is set to ' + ip);
       });
+
+
+    //chrome.tabs.executeScript(null, {file: 'modifyDOM.js'});
+    //document.getElementById('comments').style.visibility = 'hidden';
+
+
+
 })();
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
@@ -55,3 +62,50 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
         video.currentTime = 50;
     }
 });
+
+function pollComments(){
+    const com = document.getElementById('comments');
+
+    if(com){
+        modifyDOM();
+    } else {
+        console.log('running...');
+        setTimeout(pollComments, 5000);
+    }
+}
+
+pollComments();
+
+// waitForElement('comment', function(){
+//     let comments = document.getElementById('comments');
+//     //let comments_html = comments.outerHTML;
+//     //console.log(comments);
+//     var tabs_div = document.createElement('div');
+//     var tabs = document.createElement('button');
+//     tabs.innerHTML = 'BckPck';
+//     tabs_div.appendChild(tabs);
+//     comments.prepend(tabs_div);
+
+//     console.log(document.getElementById('comments'));
+// });
+//document.addEventListener('DOMContentLoaded', modifyDOM());
+//window.onload = modifyDOM();
+//document.body.style.backgroundColor = 'yellow';
+//chrome.tabs.executeScript(null, {file: 'modifyDOM.js'});
+
+function modifyDOM(){
+    let comments = document.getElementById('comments');
+
+    var tabs_div = document.createElement('div');
+    tabs_div.className = 'tab';
+    
+    var bckpck_tab = document.createElement('button');
+    bckpck_tab.innerHTML = 'BckPck';
+    bckpck_tab.className = 'tablinks';
+    tabs_div.appendChild(bckpck_tab);
+    comments.prepend(tabs_div);
+
+    console.log(document.getElementById('comments'));
+}
+
+
