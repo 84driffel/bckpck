@@ -64,7 +64,7 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 });
 
 function pollComments(){
-    const com = document.getElementById('comments');
+    const com = document.getElementsByTagName('ytd-comments-header-renderer')[0];
 
     if(com){
         modifyDOM();
@@ -94,16 +94,18 @@ pollComments();
 //chrome.tabs.executeScript(null, {file: 'modifyDOM.js'});
 
 function modifyDOM(){
-    let comments = document.getElementById('comments');
+    let comments = document.querySelector('#comments').querySelector('#title');
+    console.log(comments);
 
     var tabs_div = document.createElement('div');
     tabs_div.className = 'tab';
     
-    var bckpck_tab = document.createElement('button');
-    bckpck_tab.innerHTML = 'BckPck';
+    var bckpck_tab = document.createElement('input');
+    bckpck_tab.type = 'button'
+    bckpck_tab.value = 'BckPck'
     bckpck_tab.className = 'tablinks';
     tabs_div.appendChild(bckpck_tab);
-    comments.prepend(tabs_div);
+    comments.append(tabs_div);
 
     console.log(document.getElementById('comments'));
 }
