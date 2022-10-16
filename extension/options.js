@@ -29,7 +29,3 @@ $('#setSettings').on('click', function(){
     console.log(temp_ip);
     console.log("Chat filter: " + $('#chat-filter').is(':checked'));
 });
-
-$('#domdom-hide').on('click', function(){
-    chrome.tabs.executeScript(null, {file: 'hidecomments.js'});
-})
