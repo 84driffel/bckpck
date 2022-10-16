@@ -21,9 +21,16 @@ async function makePostRequest(data, endPoint){
 }
 
 async function makeGetRequest(url){
-    const response = await fetch(url)
+    const otherParam={
+        mode: 'cors',
+        headers:{
+          "content-type":"application/json;"
+        },
+        method: "GET"
+      };
+    const response = await fetch(url, otherParam)
     const content = await response.json();
-    console.log(content);
+    //console.log(content);
     return content;
 }
 
@@ -34,9 +41,10 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 
 (async function run(){
 
-    ip = makeGetRequest("http://173.24.113.116:5000/node/default")
+    var ip = await makeGetRequest("https://bckpck.xyz/node/default")
+    //console.log(ip)
     chrome.storage.local.set({default_ip: ip}, function() {
-        console.log('Value is set to ' + value);
+        console.log('Value is set to ' + ip);
       });
 })();
 
