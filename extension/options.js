@@ -4,13 +4,15 @@ chrome.storage.local.get(["default_ip"], function(result) {
   });
 var stored_ip = "test";
 $('#SetServerIP').hide();
+$('#default-ip').text(stored_ip);
 
 $('#defaultCheckbox').on('click', function(){
     if($('#defaultCheckbox').is(":checked")){
         $('#SetServerIP').hide();
-        $('#default-ip').val(stored_ip);
+        $('#default-ip').show();
     } else {
         $('#SetServerIP').show();
+        $('#default-ip').hide();
     }
     console.log('test');
 });
