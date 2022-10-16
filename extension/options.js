@@ -4,6 +4,7 @@ chrome.storage.local.get(["default_ip"], function(result) {
   });
 var stored_ip = "test";
 $('#SetServerIP').hide();
+
 $('#defaultCheckbox').on('click', function(){
     if($('#defaultCheckbox').is(":checked")){
         $('#SetServerIP').hide();
