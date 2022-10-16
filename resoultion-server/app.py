@@ -3,7 +3,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-list = ["173.24.113.116", "192.168.1.2"]
+list = ["https://bckpck.xyz", "192.168.1.2", "0.0.0.0"]
 
 @app.route("/")
 def index():
@@ -12,7 +12,7 @@ def index():
 @app.route("/node/<selection>", methods=['GET'])
 def node(selection):
     if(selection == "default"):
-         Response = jsonify({'some': 'data'})
+         Response = jsonify({'ip': list})
          Response.headers.add('Access-Control-Allow-Origin', '*')
          print(Response.get_data)
          return Response
