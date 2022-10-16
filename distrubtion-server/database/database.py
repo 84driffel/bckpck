@@ -24,13 +24,13 @@ class Database:
 
     def get_comments(self, url):
         cur = self.conn.cursor()
-        cur.execute("SELECT * FROM comments WHERE url = '" + url +  "';")
+        cur.execute("SELECT * FROM comments WHERE url = '" + url +  "'ORDER BY time ASC ;")
         result = cur.fetchall()
         cur.close()
         comments = []
         for i in result:
             #print('called')
-            comments.append((i[0],i[1],self.convert_time(i[2]),i[3],i[4]))
+            comments.append((i[0],i[1],int(self.convert_time(i[2])),i[3],i[4]))
         return comments
     
     def insert_user_new(self, url, user_id, content):

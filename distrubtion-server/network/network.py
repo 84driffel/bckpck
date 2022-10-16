@@ -22,8 +22,15 @@ class NetworkHandler:
 
     def post(self, content):
         lim = "<|>"
-        for i in content:
-            lim += i + "<|>"
+        lim += content[0] + "<|>"
+        lim += content[1] + "<|>"
+        lim += str(content[2]) + "<|>"
+        lim += content[3] + "<|>"
+        lim += content[4] + "<|>"
+
+        print(content)
+        #for i in content:
+        #    lim += i + "<|>"
         print(lim)
         response = self.desoSocial.submitPost(lim)
         return response.json()

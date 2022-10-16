@@ -32,7 +32,14 @@ def post_comments():
     json = request.get_json()
     print(json)
     db.insert_user_new(json["url"],json["user_id"],json["content"])
-    return 200
+    comments = db.get_comments(json["url"])
+    net_hand.sync()
+    net_hand.post(comments[-1])
+    print(comments)
+
+    Response = jsonify(200)
+    Response.headers.add('Access-Control-Allow-Origin', '*')
+    return Response
 
 
 def run():
