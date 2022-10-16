@@ -22,7 +22,7 @@ def node(selection):
         return '', 200
 
 def run():
-    app.run(host='192.168.1.5',port=443,ssl_context=('./certs/new_cert.crt', './certs/private.key'),debug=True)
+    app.run(host='192.168.1.20',port=443,ssl_context=('./certs/new_cert.crt', './certs/private.key'),debug=True)
     #app.run(host='0.0.0.0',port=8000)
 
 def main():

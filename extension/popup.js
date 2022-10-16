@@ -7,6 +7,9 @@
 // })()
 readSettings()
 
+$('#SetServerIP').hide();
+$('#defaultCheckbox').prop('checked', true);
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -41,21 +44,25 @@ function readSettings() {
 
 
 // event handler for the default ip checkbox
-// $('#defaultCheckbox').on('click', function(){
-//     if($('#defaultCheckbox').is(":checked")){
-//         $('#SetServerIP').hide();
-//         $('#default-ip').show();
-//     } else {
-//         $('#SetServerIP').show();
-//         $('#default-ip').hide();
-//     }
-//     console.log('test');
-// });
+ $('#defaultCheckbox').on('click', function(){
+     if($('#defaultCheckbox').is(":checked")){
+         $('#SetServerIP').hide();
+         $('#default-ip').show();
+     } else {
+         $('#SetServerIP').show();
+         $('#default-ip').hide();
+     }
+     //console.log('test');
+ });
 
 // event handler for the save settings button
 $('#setSettings').on('click', function(){
     chrome.storage.sync.get('preferences', function(result){
-        result.preferences["default_ip"] = $('#ip').val();
+        if($('#defaultCheckbox').is(':checked')){
+            result.preferences["default_ip"] = 'https://bckpck.xyz/node/default';
+        } else {
+            result.preferences["default_ip"] = $('#ip').val();
+        }
         console.log("Saved ip: " + result.preferences["default_ip"]);
 
         result.preferences["use_default_ip"] = document.getElementById('defaultCheckbox').checked;
@@ -67,6 +74,6 @@ $('#setSettings').on('click', function(){
     });
 });
 
-$('#domdom-hide').on('click', function(){
-    chrome.tabs.executeScript(null, {file: 'hidecomments.js'});
-})
+//$('#domdom-hide').on('click', function(){
+//    chrome.tabs.executeScript(null, {file: 'hidecomments.js'});
+//})

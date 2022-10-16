@@ -5,15 +5,42 @@
 }
 
 .tab button {
-    background-color: inherit;
+    background-color: cyan;
     float: left;
-    border: none;
+    border: 2px;
     outline: none;
     cursor: pointer;
     left: 10px;
     padding-left: 10px;
     transition: 0.3s;
+    font-size: 24px;
+}
+
+.tablinks { 
+    background-color: #43d0e2;
+    border: 2px;
+    float: left;
+    cursor: pointer;
+    transition: 0.3s;
     font-size: 16px;
+    font-family: inherit;
+}
+
+.bckpck-comment{
+    font-size: 16px;
+    font-family: inherit;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid black;
+}
+
+.bckpck-time{
+    font-size: 11px;
+}
+
+.tablinks:hover{
+    background-color: #99dbe4; /* Green */
+    color: white;  
 }
 
 .tab button:hover {
