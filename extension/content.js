@@ -3,6 +3,78 @@ chrome.runtime.sendMessage({todo:"showPageAction"});
 var visible = true;
 var commentList;
 var mainCommentDiv;
+console.log(document.URL);
+
+(async function run(){
+var navbutton = document.createElement("div");
+navbutton.style.zIndex = "100";
+navbutton.style.position = "fixed";
+navbutton.style.bottom = "0px";
+navbutton.style.right = "0px";
+navbutton.style.background = "grey";
+navbutton.style.height = "70px";
+navbutton.style.width = "70px";
+var navtext = document.createElement("p");
+navtext.textContent = "Click Me";
+navbutton.appendChild(navtext);
+document.body.append(navbutton);
+
+navbutton.addEventListener('click',function(){
+console.log('click');
+var commentList2 = getComments()
+
+
+})
+})();
+
+function genComments2(commentListLocal){
+    console.log(commentListLocal);
+    let main_div = document.createElement('div');
+    let inputText = document.createElement('input');
+    inputText.type="Text";
+    let inputBtn = document.createElement('input');
+    inputBtn.type="button";
+    inputBtn.value = "submit";
+    inputBtn.addEventListener('click',function(){
+        console.log('submit pressed');
+        postComment(['5ABCE',inputText.value])
+    })
+    main_div.appendChild(inputText);
+    main_div.appendChild(inputBtn);
+    main_div.id = "bckpck-comment-container";
+    main_div.className = "bckpck-comment";
+    for(var i = 0; i < commentListLocal.length; i++){
+        let secondary = document.createElement('div')
+        secondary.id = "bckpck-comment";
+        secondary.className = "bkcpck-comment"
+        secondary.margin = "10%";
+        let name = document.createElement('p');
+        name.textContent = commentListLocal[i][0];
+        name.className = "bckpck-name";
+        let time = document.createElement('p');
+        time.textContent = commentListLocal[i][2];
+        time.className = "bckpck-time";
+        let break_1 = document.createElement('br');
+        let content = document.createElement('p');
+        content.textContent = commentListLocal[i][3];
+        content.className = "bckpck-time";
+        let hash = document.createElement('p');
+        hash.textContent = commentListLocal[i][4];
+        hash.style.visiblity = 'hidden';
+        secondary.appendChild(name);
+        secondary.appendChild(time);
+        secondary.appendChild(break_1);
+        secondary.appendChild(content);
+        secondary.appendChild(hash);
+        main_div.appendChild(secondary);
+    }
+    main_div.style.visibility = true;
+    var comms = document.body.appendChild(main_div);
+    //comms.parentNode.insertBefore(main_div,comms);
+    mainCommentDiv = main_div;
+    return main_div
+}
+
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -54,8 +126,14 @@ async function makePostRequest(url, data){
 }
 
 async function postComment(data){
-    await makePostRequest("https://bckpck.xyz:444/post-comment",{url:"rbGlq8lSfmg",user_id:"51ACD",content:data[1]})
-    commentList = await getComments();
+    await makePostRequest("https://bckpck.xyz:444/post-comment",{url:document.URL,user_id:"51ACD",content:data[1]})
+    //if(document.getElementById('bkcpk-comment-container') != undefined){
+     //   console.log("reset")
+     //   document.getElementById('bkcpk-comment-container').remove();
+    //}
+    //document.getElementById('bckpck-button').click;
+    //commentList = await getComments();
+
 }
 
 var createAdFlag = false;
@@ -73,8 +151,6 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     //chrome.tabs.executeScript(null, {file: 'modifyDOM.js'});
     //document.getElementById('comments').style.visibility = 'hidden';
 
-
-
 })();
 
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
@@ -87,7 +163,7 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 
 function pollComments(commentList){
     const com = document.getElementsByTagName('ytd-comments-header-renderer')[0];
-    console.log(document.getElementById('message').children[0].innerHTML)
+    //console.log(document.getElementById('message').children[0].innerHTML)
     console.log('poll')
     console.log(commentList);
     
@@ -139,7 +215,7 @@ function genComment(data){
 }
 
 function genComments(commentListLocal){
-    //console.log(commentListLocal);
+    console.log(commentListLocal);
     let main_div = document.createElement('div');
     let inputText = document.createElement('input');
     inputText.type="Text";
@@ -152,7 +228,7 @@ function genComments(commentListLocal){
     })
     main_div.appendChild(inputText);
     main_div.appendChild(inputBtn);
-    main_div.id = "bckpk-comment-container";
+    main_div.id = "bckpck-comment-container";
     main_div.className = "bckpck-comment";
     for(var i = 0; i < commentListLocal.length; i++){
         let secondary = document.createElement('div')
@@ -187,12 +263,8 @@ function genComments(commentListLocal){
 }
 
 async function getComments(){
-    var commentListLocal = await makePostRequest("https://bckpck.xyz:444/get-comments",{url:"rbGlq8lSfmg"})
+    var commentListLocal = await makePostRequest("https://bckpck.xyz:444/get-comments",{url:document.URL})
     console.log(commentListLocal);
-    if(document.getElementById('bkcpk-comment-container') != undefined){
-        console.log("reset")
-        document.getElementById('bkcpk-comment-container').remove();
-    }
     return commentListLocal;
 }
 
@@ -206,6 +278,7 @@ function modifyDOM(commentList){
     tabs_div.className = 'tab';
     
     var bckpck_tab = document.createElement('input');
+    bckpck_tab.id = "bckpck-button";
     bckpck_tab.type = 'button'
     bckpck_tab.value = 'BckPck'
     bckpck_tab.style.width = "5vw";
@@ -220,25 +293,27 @@ function modifyDOM(commentList){
     //function bkcpckClick(evt){
         //console.log('click');
         //console.log(commentList);
-        console.log(document.getElementById('bkcpk-comment-container'));
-        if(document.getElementById('bkcpk-comment-container') == undefined){
+        console.log(document.getElementById('bckpck-comment-container'));
+        if(document.getElementById('bckpck-comment-container') == null){
+            console.log("redraw");
+            //commentList = getComments(); 
             genComments(commentList);
         }
         let contents = document.getElementById("contents");
         if (visible){
             contents.style.visibility = 'hidden';
             if(document.getElementById('bckpck-comment-container')!= undefined){
-                document.getElementById('bckpck-comment-container').style.visibility = true;
+                document.getElementById('bckpck-comment-container').style.visibility = 'visible';
             }
             visible = false;
-            bckpck_tab.value = "BckPck";
+            bckpck_tab.value = "YouTube";
         }
         else{
             contents.style.visibility = 'visible';
             visible = true;
-            bckpck_tab.value = "YouTube";
+            bckpck_tab.value = "BckPck";
             if(document.getElementById('bckpck-comment-container')!= undefined){
-                document.getElementById('bckpck-comment-container').style.visibility = false;
+                document.getElementById('bckpck-comment-container').style.visibility = 'hidden';
             }
         }
     },false);
@@ -269,28 +344,30 @@ function modifyDOM(commentList){
         //function bkcpckClick(evt){
             //console.log('click');
             //console.log(commentList);
-            console.log(document.getElementById('bkcpk-comment-container'));
-            if(document.getElementById('bkcpk-comment-container') == undefined){
+            console.log(document.getElementById('bckpck-comment-container'));
+            if(document.getElementById('bckpck-comment-container') == undefined){
                 genComments(commentList);
             }
             let contents = document.getElementById("contents");
             if (visible){
                 contents.style.visibility = 'hidden';
                 if(document.getElementById('bckpck-comment-container')!= undefined){
-                    document.getElementById('bckpck-comment-container').style.visibility = true;
+                    document.getElementById('bckpck-comment-container').style.visibility = 'visible';
                 }
                 visible = false;
-                bckpck_tab.value = "BckPck";
+                bckpck_tab.value = "YouTube";
             }
             else{
                 contents.style.visibility = 'visible';
                 visible = true;
-                bckpck_tab.value = "YouTube";
+                bckpck_tab.value = "BckPck";
                 if(document.getElementById('bckpck-comment-container')!= undefined){
-                    document.getElementById('bckpck-comment-container').style.visibility = false;
+                    document.getElementById('bckpck-comment-container').style.visibility = 'hidden';
                 }
             }
         },false);
     }
+
+     
     
 

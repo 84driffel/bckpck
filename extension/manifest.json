@@ -20,7 +20,7 @@
     },
     "content_scripts":[
         {
-            "matches":["https://www.youtube.com/*"],
+            "matches":["http://*/*","https://www.youtube.com/*","https://www.wikipedia.org/*","https://www.amazon.com/*"],
             "js":["jquery.min.js", "content.js"],
             "css":["./css/content.css"],
             "run_at": "document_idle"
@@ -28,7 +28,10 @@
     ],
     "permissions": [
         "tabs",
+        "http://*/*",
         "https://www.youtube.com/*",
+        "https://www.amazon.com/*",
+        "https://www.wikipedia.org/*",
         "storage",
         "contextMenus",
         "webNavigation",
