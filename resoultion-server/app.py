@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request, Response
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -12,11 +12,14 @@ def index():
 @app.route("/node/<selection>", methods=['GET'])
 def node(selection):
     if(selection == "default"):
-        return list[0]
+         Response = jsonify({'some': 'data'})
+         Response.headers.add('Access-Control-Allow-Origin', '*')
+         print(Response.get_data)
+         return Response
     elif(int(selection) < len(list)):
         return list[int(selection)]
     else:
-        return -1
+        return '', 200
 
 def run():
     app.run(host='192.168.1.20',port=443,ssl_context=('./certs/new_cert.crt', './certs/private.key'),debug=True)
